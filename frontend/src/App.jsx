@@ -1,7 +1,17 @@
 import { useMemo, useState } from "react";
 import { MapContainer, Marker, Polyline, Popup, TileLayer } from "react-leaflet";
 
-const API_BASE = import.meta.env.VITE_API_BASE || "http://127.0.0.1:8000";
+const RAW_API_BASE = import.meta.env.VITE_API_BASE;
+const API_BASE =
+  RAW_API_BASE !== undefined && RAW_API_BASE !== null && String(RAW_API_BASE).trim() !== ""
+    ? String(RAW_API_BASE).replace(/\/$/, "")
+    : import.meta.env.PROD
+      ? ""
+      : "http://127.0.0.1:8000";
+
+function planTripUrl() {
+  return API_BASE ? `${API_BASE}/api/plan-trip/` : "/api/plan-trip/";
+}
 
 function DailyLog({ log, currentLocation, pickupLocation, dropoffLocation }) {
   const rows = [
@@ -335,7 +345,7 @@ export function App() {
     setLoading(true);
     setError("");
     try {
-      const response = await fetch(`${API_BASE}/api/plan-trip/`, {
+      const response = await fetch(planTripUrl(), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

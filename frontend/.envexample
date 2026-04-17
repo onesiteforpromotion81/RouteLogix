@@ -1,1 +1,6 @@
+# Local dev: talk to Django on your machine
 VITE_API_BASE=http://127.0.0.1:8000
+
+# Vercel (Option B proxy): leave unset or empty so the app uses same-origin /api/*
+# (vercel.json rewrites /api/* -> your VPS). Do not set http://IP here — mixed content.
+# VITE_API_BASE=

@@ -59,6 +59,23 @@ set VITE_API_BASE=http://your-backend-url
 
 ## Production Hosting
 
-- Frontend can be deployed directly to Vercel from `frontend/`.
-- Backend can be deployed on Render/Railway/Fly/Heroku-like platforms.
-- Set frontend env `VITE_API_BASE` to your deployed backend URL.
+- Frontend can be deployed directly to Vercel from `frontend/` (set Vercel **Root Directory** to `frontend`).
+- Backend can run on a VPS (or any host) reachable from the public internet.
+
+### Vercel + HTTP VPS (Option B — avoids mixed content)
+
+Browsers block `https://your-vercel.app` from calling `http://your-vps-ip:8000` (mixed content).
+
+This repo uses `frontend/vercel.json` to **rewrite** same-origin requests:
+
+- Browser calls: `POST /api/plan-trip/` on the Vercel domain (HTTPS)
+- Vercel proxies to: `http://<your-vps>/api/plan-trip/`
+
+Update the `destination` host in `frontend/vercel.json` if your VPS IP changes.
+
+On Vercel project settings:
+
+- **Do not** set `VITE_API_BASE` to `http://...` (that brings mixed content back).
+- Either omit `VITE_API_BASE`, or set it empty. Production builds then use `/api/...` (same origin).
+
+Local dev still uses `VITE_API_BASE=http://127.0.0.1:8000` (see `frontend/.envexample`).
