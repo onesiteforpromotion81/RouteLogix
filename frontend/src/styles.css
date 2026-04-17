@@ -1,0 +1,418 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f4f7fb;
+  color: #12243a;
+}
+
+.page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 14px rgba(14, 34, 61, 0.08);
+  margin-bottom: 16px;
+  padding: 16px;
+}
+
+.form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 10px;
+}
+
+input,
+button {
+  border: 1px solid #c8d0dc;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 14px;
+}
+
+button {
+  background: #0b4f9c;
+  border: none;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.7;
+}
+
+.map-wrap {
+  height: 420px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.map-wrap .leaflet-container {
+  width: 100%;
+  height: 100%;
+}
+
+.stops {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.stops li {
+  border-bottom: 1px solid #ebeff5;
+  padding: 8px 0;
+}
+
+.error {
+  color: #c53030;
+  margin-top: 8px;
+}
+
+.log-card {
+  border: 1px solid #d7dee8;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 12px;
+}
+
+.log-grid {
+  width: 100%;
+  border: 1px solid #171717;
+  border-radius: 2px;
+  background: #fff;
+}
+
+.grid-label {
+  font-size: 11px;
+  fill: #111;
+  font-weight: 600;
+}
+
+.grid-hour {
+  font-size: 9px;
+  fill: #111;
+}
+
+.totals {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+  font-size: 13px;
+}
+
+.remarks {
+  margin-top: 8px;
+  font-size: 12px;
+}
+
+.remarks p {
+  margin: 4px 0;
+}
+
+.paper-log {
+  border: 2px solid #9bb0df;
+  border-radius: 3px;
+  background: #fff;
+  padding: 10px;
+  margin-top: 8px;
+}
+
+.paper-headline {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr 1fr;
+  gap: 8px;
+  align-items: stretch;
+  border-bottom: 1px solid #9bb0df;
+  padding-bottom: 8px;
+}
+
+.left-headline,
+.right-headline {
+  display: grid;
+  gap: 6px;
+}
+
+.tiny-field {
+  border: 1px solid #9bb0df;
+  min-height: 48px;
+  padding: 5px 6px;
+}
+
+.tiny-field span {
+  display: block;
+  font-size: 10px;
+  color: #5c74ae;
+  text-transform: uppercase;
+}
+
+.tiny-field strong {
+  display: block;
+  min-height: 16px;
+}
+
+.center-headline {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.center-headline h3 {
+  margin: 0;
+  font-size: 26px;
+  letter-spacing: 0.6px;
+  color: #4a66aa;
+}
+
+.center-headline p {
+  margin: 2px 0 0;
+  font-size: 11px;
+  color: #4a66aa;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.paper-log-top {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(120px, 1fr));
+  gap: 8px;
+  margin: 10px 0;
+}
+
+.paper-log-top div {
+  border: 1px solid #9bb0df;
+  min-height: 54px;
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.paper-log-top span {
+  font-size: 11px;
+  color: #5c74ae;
+  text-transform: uppercase;
+}
+
+.paper-log-top strong {
+  font-size: 12px;
+  color: #222;
+}
+
+.top-grid {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.chart-plus-hours {
+  display: grid;
+  grid-template-columns: 1fr 98px;
+  gap: 8px;
+  align-items: stretch;
+}
+
+.total-hours-panel {
+  border: 1px solid #9bb0df;
+  display: flex;
+  flex-direction: column;
+}
+
+.total-hours-head {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid #9bb0df;
+}
+
+.total-hours-head div {
+  font-size: 11px;
+  font-weight: 700;
+  color: #4a66aa;
+  text-align: center;
+  padding: 5px 3px;
+  line-height: 1.15;
+}
+
+.panel-title {
+  border-bottom: 1px solid #9bb0df;
+  color: #4a66aa;
+  font-weight: 700;
+  font-size: 14px;
+  text-align: center;
+  padding: 6px 3px;
+}
+
+.hours-grid {
+  flex: 1;
+  display: grid;
+  grid-template-rows: repeat(4, 1fr);
+}
+
+.hours-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-bottom: 1px solid #9bb0df;
+}
+
+.hours-row:last-child {
+  border-bottom: none;
+}
+
+.digit-box {
+  border-right: 1px solid #9bb0df;
+  min-height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1;
+  color: #111;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.digit-box:nth-child(2),
+.digit-box:last-child {
+  border-right: 2px solid #9bb0df;
+}
+
+.digit-box:last-child {
+  border-right: none;
+}
+
+.paper-log-remarks {
+  border: 1px solid #9bb0df;
+  margin-top: 10px;
+  min-height: 160px;
+  padding: 8px;
+}
+
+.paper-log-remarks strong {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 28px;
+  color: #4a66aa;
+  line-height: 1;
+}
+
+.paper-log-remarks p {
+  margin: 3px 0;
+  font-size: 12px;
+  color: #111;
+}
+
+.remarks-callout-svg {
+  width: 100%;
+  height: 118px;
+  display: block;
+}
+
+.remark-empty-text {
+  font-size: 12px;
+  fill: #444;
+}
+
+.remark-angled-text {
+  font-size: 8.5px;
+  fill: #111;
+  font-weight: 700;
+  paint-order: stroke fill;
+  stroke: #fff;
+  stroke-width: 2px;
+  stroke-linejoin: round;
+}
+
+.remarks-inline-label {
+  font-size: 20px;
+  fill: #111;
+  font-weight: 700;
+}
+
+.paper-log-shipping {
+  display: grid;
+  grid-template-columns: 1.5fr 1.5fr 1fr;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.paper-log-shipping div {
+  border: 1px solid #9bb0df;
+  min-height: 52px;
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.paper-log-shipping span {
+  font-size: 11px;
+  color: #5c74ae;
+  text-transform: uppercase;
+}
+
+.paper-log-shipping strong {
+  font-size: 13px;
+  margin-top: 6px;
+  color: #222;
+}
+
+.remarks-footnote {
+  margin-top: 8px;
+  border: 1px solid #9bb0df;
+  color: #5c74ae;
+  font-size: 11px;
+  padding: 6px;
+  text-align: center;
+}
+
+.paper-log-recap {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.paper-log-recap div {
+  border: 1px solid #9bb0df;
+  min-height: 52px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.paper-log-recap span {
+  font-size: 11px;
+  color: #5c74ae;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.paper-log-recap strong {
+  font-size: 16px;
+  color: #2b3b5f;
+}
+
+.log-pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
+  gap: 10px;
+}
+
+.log-pagination button {
+  min-width: 110px;
+}
+
+.log-pagination span {
+  font-weight: 600;
+  color: #1a2433;
+}
